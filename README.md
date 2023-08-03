@@ -17,3 +17,5 @@ Note:
 - Most features are categorical (Nominal, Ordinal, Binary), some with high cardinality.
 
 - Missing imputation can be a part of your pipeline as well.
+
+URL: https://www.kaggle.com/datasets/arashnic/hr-analytics-job-change-of-data-scientists?datasetId=1019790&language=Python&select=aug_train.csv
