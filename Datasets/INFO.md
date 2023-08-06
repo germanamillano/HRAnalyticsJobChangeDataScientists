@@ -28,9 +28,11 @@
 
 - target: 0 – Not looking for job change, 1 – Looking for a job change
 
-## Inspiration
+## Autor Inspiration
 
 Predict the probability of a candidate will work for the company
 Interpret model(s) such a way that illustrate which features affect candidate decision
 Please refer to the following task for more details:
+
+
 https://www.kaggle.com/arashnic/hr-analytics-job-change-of-data-scientists/tasks?taskId=3015
