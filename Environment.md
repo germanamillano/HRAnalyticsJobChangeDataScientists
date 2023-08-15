@@ -30,8 +30,7 @@ Follow the instructions below to do the Environments.
     ```
     Output:
     
-
-4. Open the `HRAnalyticsJobChangeMachineLearning.ipynb` notebook and click on `Run All`. 
+4. Open the `hranalyticsjobchangedatascientists/hranalyticsjobchangedatascientists/hranalyticsjobchangedatascientists.py` notebook and click on `Run All`. 
     > **IMPORTANT!**  
     Do not forget to select the Python 3.10.9 kernel you have already created.
 
@@ -39,4 +38,15 @@ Follow the instructions below to do the Environments.
     ```bash
     Predictions:	 [263527.   331884.02 221119.   ... 105722.   213199.   459125.66]
     ```
-**Congrats, the notebook is running in a virtual environment with Python 3.7.9!**
+**Congrats, the notebook is running in a virtual environment with Python 3.10!**
+
+
+
+
+pre-commit install   
+
+git status  
+
+git commit -m "Prueba PreCommit"      
+
+git push    

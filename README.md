@@ -19,3 +19,26 @@ Note:
 - Missing imputation can be a part of your pipeline as well.
 
 URL: https://www.kaggle.com/datasets/arashnic/hr-analytics-job-change-of-data-scientists?datasetId=1019790&language=Python&select=aug_train.csv
+
+### Scope
+
+With this project we seek to apply all the knowledge acquired in class, seeking to make an implementation of MLOps. Within the scope that we seek to apply is the following:
+
+- Include virtual environments: Creation and implementation of an environment for Python.
+- Continued use of GitHub: Continued use of Git with documented commits and incremental code.
+- Unit tests: Generation of unit tests that allow to speed up the Test.
+- Pre-commits: Generation of the Pre-commit process allowing alerts when rules of standards and good practices are not met
+- Refactoring: Refactoring of a code to a folder structure, functionalities, classes and functions that allow to have a more reusable and scalable code.
+- Linting and formatting: Automatic formatting through the use of Pre.commits that help to refactor code.
+- Directory structure: Use of directory structures where we can have classes with main responsibilities.
+- OOP (Classes, methods, transformers, pipelines): Use of object-oriented programming, and not code in a single notebook that cannot be reused and structured.
+
+### Other Documents
+
+#### Enviroment Creation
+
+HRAnalyticsJobChangeDataScientists/Environment.md
+
+#### Data Documentation
+
+hranalyticsjobchangedatascientists/data/INFO.md
