@@ -1,7 +1,10 @@
+from logs.MyLogger import MyLogger
 from preprocess.preprocess_data import (CategoricalImputer, FeatureSelector,
                                         NumericalImputer)
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeClassifier
+
+logger = MyLogger.__call__().get_logger()
 
 
 class hranalyticsjobDataPipeline:
@@ -31,13 +34,18 @@ class hranalyticsjobDataPipeline:
         self.SELECTED_FEATURES = selected_features
 
     # Create and return the Titanic data processing pipeline.
+
     def create_pipeline(self):
         """
-        Create and return the Titanic data processing pipeline.
+        Create and return the data processing pipeline.
 
         Returns:
             Pipeline: A scikit-learn pipeline for data processing and modeling.
         """
+
+        logger.debug(
+            "[create_pipeline(self)] - Create and return the data processing pipeline")
+
         self.PIPELINE = Pipeline(
             [
                 ('categorical_imputer', CategoricalImputer(
@@ -60,6 +68,9 @@ class hranalyticsjobDataPipeline:
         Returns:
         - logistic_regression_model (LogisticRegression): The fitted Logistic Regression model.
         """
+        logger.debug(
+            "[fit_decision_tree(self, X_train, y_train)] - Fit a Logistic Regression model using the predefined data preprocessing pipeline")
+
         tree_clf = DecisionTreeClassifier(random_state=17)
 
         pipeline = self.create_pipeline()
@@ -83,5 +94,8 @@ class hranalyticsjobDataPipeline:
         Returns:
         - transformed_data (pandas.DataFrame or numpy.ndarray): The preprocessed test data.
         """
+        logger.debug(
+            "[transform_test_data(self, X_test)] - Apply the data preprocessing pipeline on the test data")
+
         pipeline = self.create_pipeline()
         return pipeline.transform(X_test)

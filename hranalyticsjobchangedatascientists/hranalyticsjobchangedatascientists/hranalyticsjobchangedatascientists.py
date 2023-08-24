@@ -1,9 +1,11 @@
 """Main module."""
-
 # SETUP
+
+from datetime import datetime
 
 import joblib
 from load.load_data import DataRetriever
+from logs.MyLogger import MyLogger
 from sklearn.metrics import accuracy_score, roc_auc_score
 from train.train_data import hranalyticsjobDataPipeline
 
@@ -56,10 +58,24 @@ TRAINED_MODEL_DIR = 'hranalyticsjobchangedatascientists/hranalyticsjobchangedata
 PIPELINE_NAME = 'decision_tree'
 PIPELINE_SAVE_FILE = f'{PIPELINE_NAME}_output.pkl'
 
+logger = MyLogger.__call__().get_logger()
+
+
+# LOG_DIR = 'hranalyticsjobchangedatascientists/hranalyticsjobchangedatascientists/logs/'
+# LOG_NAME = 'pipeline_log_' + "{}{}{}".format(date.today().year, date.today().month, date.today().day) + '.log'
+
+# logging.basicConfig(level=logging.DEBUG, filename=LOG_DIR + LOG_NAME,
+#                     format='%(asctime)s - %(levelname)s - %(message)s')
+
+
 # MAIN
 
 if __name__ == "__main__":
-    print(DATASETS_DIR + DATASETS_TRAIN)
+    logger.debug("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _")
+    logger.debug(datetime.now())
+    logger.debug("Start the model training process")
+    logger.info("Training Data Directory" + DATASETS_DIR + DATASETS_TRAIN)
+    # print(DATASETS_DIR + DATASETS_TRAIN)
 
     # Functions/Data retrieval
     data_retriever = DataRetriever(DATASETS_TRAIN, DATASETS_DIR)
@@ -84,10 +100,21 @@ if __name__ == "__main__":
     # Make predictions
     class_pred = decision_tree_model.predict(X_valid)
     proba_pred = decision_tree_model.predict_proba(X_valid)[:, 1]
-    print(f'test roc-auc : {roc_auc_score(y_valid, proba_pred)}')
-    print(f'test accuracy: {accuracy_score(y_valid, class_pred)}')
+
+    logger.info(f'test roc-auc : {roc_auc_score(y_valid, proba_pred)}')
+    logger.info(f'test accuracy: {accuracy_score(y_valid, class_pred)}')
+
+    # print(f'test roc-auc : {roc_auc_score(y_valid, proba_pred)}')
+    # print(f'test accuracy: {accuracy_score(y_valid, class_pred)}')
 
     # Persistence/Szve model
     save_path = TRAINED_MODEL_DIR + PIPELINE_SAVE_FILE
     joblib.dump(decision_tree_model, save_path)
-    print(f"Model saved in {save_path}")
+
+    logger.info(f"Model saved in {save_path}")
+    # print(f"Model saved in {save_path}")
+
+    # print(X_valid)
+    # print(X_valid.info())
+
+    logger.debug("I finish the model training process")

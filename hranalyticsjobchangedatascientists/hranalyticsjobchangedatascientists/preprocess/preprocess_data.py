@@ -1,6 +1,9 @@
 
 import pandas as pd
+from logs.MyLogger import MyLogger
 from sklearn.base import BaseEstimator, TransformerMixin
+
+logger = MyLogger.__call__().get_logger()
 
 
 class CategoricalImputer(BaseEstimator, TransformerMixin):
@@ -49,6 +52,8 @@ class CategoricalImputer(BaseEstimator, TransformerMixin):
             variables (list or str, optional): List of column names (variables) to impute missing values for.
                 If a single string is provided, it will be treated as a single variable. Default is None.
         """
+        logger.debug("Initialize the CategoricalImputer transformer")
+
         self.variables = [variables] if not isinstance(
             variables, list) else variables
 
@@ -80,6 +85,9 @@ class CategoricalImputer(BaseEstimator, TransformerMixin):
         Returns:
             X_transformed (pd.DataFrame): Transformed DataFrame with missing values imputed for the specified categorical variables.
         """
+        logger.debug(
+            "[transform(self, X)] - Imputes missing values in the specified categorical variables and returns the modified DataFrame")
+
         X = X.copy()
         for var in self.variables:
             X[var] = X[var].fillna('Missing')
@@ -132,6 +140,8 @@ class NumericalImputer(BaseEstimator, TransformerMixin):
             variables (list or str, optional): List of column names (variables) to impute missing values for.
                 If a single string is provided, it will be treated as a single variable. Default is None.
         """
+        logger.debug("Initialize the NumericalImputer transformer")
+
         self.variables = [variables] if not isinstance(
             variables, list) else variables
 
@@ -160,6 +170,10 @@ class NumericalImputer(BaseEstimator, TransformerMixin):
         Returns:
             X_transformed (pd.DataFrame): Transformed DataFrame with missing values imputed for the specified numerical variables.
         """
+        logger.debug(
+            "[transform(self, X)] - Imputes missing values in the specified numerical variables " +
+            "using the median values and returns the modified DataFrame")
+
         X = X.copy()
         for var in self.variables:
             X[var] = X[var].fillna(-1)

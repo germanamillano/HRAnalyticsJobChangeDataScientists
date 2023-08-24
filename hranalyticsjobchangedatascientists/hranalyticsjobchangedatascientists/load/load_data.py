@@ -1,5 +1,8 @@
 import pandas as pd
+from logs.MyLogger import MyLogger
 from sklearn.model_selection import train_test_split
+
+logger = MyLogger.__call__().get_logger()
 
 
 class DataRetriever:
@@ -96,6 +99,8 @@ class DataRetriever:
                         '20': 4,
                         '>20': 5}
 
+    # logger = MyLogger.__call__().get_logger()
+
     # Class Builder
     def __init__(self, data_name, data_path):
         self.data_name = data_name
@@ -110,6 +115,9 @@ class DataRetriever:
         Returns:
             str: A message indicating the location of the stored data.
         """
+        logger.info(
+            "[retrieve_data(self)] - Retrieves data from the specified URL, processes it, and stores it in a CSV file")
+
         # Loading data from specific URL
         self.data = pd.read_csv(self.datasets_dir + self.data_name)
 
@@ -151,6 +159,8 @@ class DataRetriever:
         X_train, X_valid, y_train, y_valid = data_retriever.retrieve_train_test_split()
         ```
         """
+        logger.info(
+            "[retrieve_train_test_split(self)] - Function that returns a data set in 2 samples for Test and Validation.")
 
         y = self.data[self.TARGET]
         x = self.data.drop(self.TARGET, axis=1)

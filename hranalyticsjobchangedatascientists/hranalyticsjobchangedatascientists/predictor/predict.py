@@ -1,6 +1,9 @@
 import argparse
 
 import joblib
+from logs.MyLogger import MyLogger
+
+logger = MyLogger.__call__().get_logger()
 
 
 class ModelPredictor:
@@ -26,6 +29,7 @@ class ModelPredictor:
         Parameters:
             model_path (str): Path to the trained model file (joblib format).
         """
+        logger.info("Initializes the ModelPredictor instance")
         self.model = joblib.load(model_path)
 
     # Makes predictions on the provided new_data using the loaded model
@@ -39,6 +43,9 @@ class ModelPredictor:
         Returns:
             Predicted outputs from the model.
         """
+        logger.debug(
+            "[predict(self, new_data)] - Makes predictions on the provided new_data using the loaded model")
+
         return self.model.predict(new_data)
 
 
@@ -59,4 +66,5 @@ if __name__ == "__main__":
     new_data = args.new_data
 
     predictions = predictor.predict(new_data)
+
     print(predictions)
