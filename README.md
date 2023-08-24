@@ -33,12 +33,109 @@ With this project we seek to apply all the knowledge acquired in class, seeking 
 - Directory structure: Use of directory structures where we can have classes with main responsibilities.
 - OOP (Classes, methods, transformers, pipelines): Use of object-oriented programming, and not code in a single notebook that cannot be reused and structured.
 
-### Other Documents
 
-#### Enviroment Creation
+# Virtual Environments
+Follow the instructions below to do the Environments.
 
-HRAnalyticsJobChangeDataScientists/Environment.md
+### Instructions
+1. Clone the project `https://github.com/germanamillano/HRAnalyticsJobChangeDataScientists` on your local computer.
+2. Create a virtual environment with `Python 3.10.9`
+    * Create venv
+        ```
+        python3.10 -m venv venv
+        ```
 
-#### Data Documentation
+    * Activate the virtual environment
 
-hranalyticsjobchangedatascientists/data/INFO.md
+        ```
+        source venv/bin/activate
+        ```
+
+3. Install libraries
+    Run the following command to install the other libraries.
+
+    ```bash
+    pip install -r '/Users/mac/Documents/GitHub/HRAnalyticsJobChangeDataScientists/requirements-310txt'
+    ```
+    Verify the installation with this command:
+    ```bash
+    pip freeze
+    ```
+    Output:
+
+4. Install Pre-commit in Terminal
+    ```
+    pre-commit install   
+    ```
+    
+3. Open the `hranalyticsjobchangedatascientists/hranalyticsjobchangedatascientists/hranalyticsjobchangedatascientists.py` notebook and click on `Run All`. 
+    > **IMPORTANT!**  
+    Do not forget to select the Python 3.10.9 kernel you have already created.
+
+**Congrats, the notebook is running in a virtual environment with Python 3.10!**
+
+## Continuous use of GitHub
+
+* GitHub was used continuosly during the development of this project, increasing graduately the content of the repository.
+  * [HRAnalyticsJobChangeDataScientists/commits](https://github.com/germanamillano/HRAnalyticsJobChangeDataScientists/commits/main)
+
+# Pre-commits
+
+* The Pre-commit functionality was implemented, within this functionality the following validations are being made:
+  * isort
+  * autoflake
+  * autopep8
+  * flake8
+    * _Every one has its own hooks to represent specific checks on the code._
+    * _The corresponding libraries are contained inside requirements-310.txt file. They may be installed but nothing will happen if .yaml file does not exist or is empty, or pre-commit has not been initialized on the project for the first time._
+* The configuration file is: .pre-commit-config.yaml
+
+# Setup pre-commits
+
+* Open your terminal, navigate to the root directory of your project
+* Install pre.commitPre-commit for the firs time use:
+    ```bash
+    pip install pre-commit
+    ```
+* After creating the .pre-commit-config.yaml file, initialize pre-commit for the project:
+  ```bash
+  pre-commit install
+  ```
+* With the pre-commit hooks installed, you can now make changes to your Python code. When you're ready to commit your changes, run the following command to trigger the pre-commit checks:
+  ```bash
+  git commit -m "add pre-commit file"
+  ```
+* If every check "passed", then you are ready to upload your changes to the repository at GitHub.
+  ```bash
+  git push
+  ```
+# Refactorization
+
+* Folders with refactorized code is found in the following directory structure of this project ([repository](https://github.com/JDEQ413/mlops_project)).
+  * api
+  * docs
+  * hranalyticsjobchangedatascientists
+    * data
+    * load
+    * logs
+    * models
+    * predictor
+    * preprocess
+    * tests
+    * train
+  *
+
+ * All the code separated in modules and classes can be executed in the terminal
+   * Change the directory to "mlops_project" folder
+   * If not active, activate virtual environment
+     ```bash
+     source venv/bin/activate
+     ```
+     * Windows cmd:
+       ```bash
+       venv310\scripts\activate.bat
+       ```
+   * Run the following:
+     ```bash
+     python mlops_project\mlops_project.py
+     ```
