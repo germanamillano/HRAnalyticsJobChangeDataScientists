@@ -6,10 +6,14 @@ from fastapi import FastAPI
 from starlette.responses import JSONResponse
 
 from hranalyticsjobchangedatascientists.api.model.model import hranalyticsjob
-from hranalyticsjobchangedatascientists.hranalyticsjobchangedatascientists.logs.MyLogger import \
-    MyLogger
 from hranalyticsjobchangedatascientists.hranalyticsjobchangedatascientists.predictor.predict import \
     ModelPredictor
+
+# from hranalyticsjobchangedatascientists.hranalyticsjobchangedatascientists.logs.MyLogger import \
+#     MyLogger
+# from predictor.predict import \
+#     ModelPredictor
+
 
 # Add the parent directory to sys.path
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -21,7 +25,7 @@ model_path = os.path.join(os.path.abspath(parent_dir), relative_path)
 
 app = FastAPI()
 
-logger = MyLogger.__call__().get_logger()
+# logger = MyLogger.__call__().get_logger()
 
 
 """
@@ -32,13 +36,13 @@ Values are required after de endpoint.
 
 @app.get('/', status_code=200)
 async def healthcheck():
-    logger.info("API services active")
+    # logger.info("API services active")
     return 'hr analytics job change decision tree is ready to go!'
 
 
 @app.post('/predict')
 def predictor(item: hranalyticsjob):
-    logger.info("The predictor was called for one prediction")
+    # logger.info("The predictor was called for one prediction")
     predictor = ModelPredictor(model_path + "/decision_tree_output.pkl")
     X = [
         item.city,
@@ -55,7 +59,7 @@ def predictor(item: hranalyticsjob):
     ]
     prediction = predictor.predict([X])
 
-    logger.info("The prediction was done")
-    logger.debug(f"Resultado predicción: {prediction}")
+    # logger.info("The prediction was done")
+    # logger.debug(f"Resultado predicción: {prediction}")
 
     return JSONResponse(f"Resultado predicción: {prediction}")

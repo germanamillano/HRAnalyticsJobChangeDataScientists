@@ -90,7 +90,7 @@ Follow the instructions below to do the Environments.
     * _The corresponding libraries are contained inside requirements-310.txt file. They may be installed but nothing will happen if .yaml file does not exist or is empty, or pre-commit has not been initialized on the project for the first time._
 * The configuration file is: .pre-commit-config.yaml
 
-# Setup pre-commits
+### Install pre-commits
 
 * Open your terminal, navigate to the root directory of your project
 * Install pre.commitPre-commit for the firs time use:
@@ -109,9 +109,40 @@ Follow the instructions below to do the Environments.
   ```bash
   git push
   ```
+
+# Cookiecutter
+
+* Ensure you cover all the [prerrequisites](https://cookiecutter.readthedocs.io/en/stable/installation.html#prerequisites)
+* Install cookiecutter
+
+    ```bash
+    python -m pip install cookiecutter
+    ```
+
+* Change the working directory to to hranalyticsjobchangedatascientists.
+
+    ```bash
+    cd hranalyticsjobchangedatascientists
+    ```
+
+    Otherwise, if you are working on a new project, just skip this step and go to the next one.
+* Run this command, and fill out the information
+
+## Directory structure
+
+Once the template is created, it is time to create the folders with the code following this structure:
+
+* Define the different sections of the notebook
+![Notebook](imgs/notebook.png)
+* Create the following folders with the scripts in it:
+![Folders](imgs/folders.png)
+    > **IMPORTANT!**  
+    Create the `__init__.py` scripts on each folder where there are python scripts since they are important to mark the folder as a package, that will be imported later.
+3. Migrate the notebook code to the scripts.
+
 # Refactorization
 
-* Folders with refactorized code is found in the following directory structure of this project ([repository](https://github.com/JDEQ413/mlops_project)).
+* Folders with refactorized code is found in the following directory structure of this project.
   * api
   * docs
   * hranalyticsjobchangedatascientists
@@ -126,16 +157,85 @@ Follow the instructions below to do the Environments.
   *
 
  * All the code separated in modules and classes can be executed in the terminal
-   * Change the directory to "mlops_project" folder
-   * If not active, activate virtual environment
+   * Activate virtual environment
      ```bash
      source venv/bin/activate
      ```
-     * Windows cmd:
-       ```bash
-       venv310\scripts\activate.bat
-       ```
-   * Run the following:
+   * After, run the following route:
      ```bash
-     python mlops_project\mlops_project.py
+     hranalyticsjobchangedatascientists\hranalyticsjobchangedatascientists.py
      ```
+
+# Unit tests
+
+* Unit tests are developed to acomplish basic validations on specific functionalities of the project.
+  * Library: pytest
+    * Add library pytest to file ```requirements-310.txt```
+    * Install, move to project directory: ```pip install pytest``` or ```pip install -r requirements-310.txt```
+  * Code folder: ```hranalyticsjobchangedatascientists/tests```
+  * Run tests, terminal or console:
+    * Run file: ```tests/unit_tests.py```
+  * For tests parametrizable, Run file: ```tests/test_hranalyticsjobchangedatascientists.py```
+
+# REST API
+
+* The implementation of REST API was through the application of fastapi, pydantic and uvicorn libraries and the corresponding code can be found in the ```api/main.py``` folder of this project.
+  * All libraries are included in ```requirements-310.txt``` file, and are already installed by this point.
+* The endpoints generated to run the project as an API are:
+  * healthcheck
+  * train_new_model
+  * predictor
+* Run the following command to start House-pricing API locally.
+  ```bash
+  uvicorn hranalyticsjobchangedatascientists.api.main:app --reload 
+  ```
+* You can check the endpoints as follows:
+  * Access ```http://127.0.0.1:8000/```, you will see a message like this ```"hr analytics job change decision tree is ready to go!"```.
+  * Access ```http://127.0.0.1:8000/docs```, the browser will display the diferents endpoints
+
+
+## Run FastAPI
+
+* Run the next command to start the Titanic API locally
+
+    ```bash
+    uvicorn hranalyticsjobchangedatascientists.api.main:app --reload 
+    ```
+
+# Logs
+
+* For check the log with info, debug and error you shoulg open the files in folder hranalyticsjobchangedatascientists\logs\log_[aaaa-mm-dd].log
+
+![Logs](imgs/log_2023-08-24.png)
+    > **IMPORTANT!**  
+    The Log have information like date, hour, file or class, log type, line in log and description.
+
+# Docker
+
+* Change the working directory to to hranalyticsjobchangedatascientists.
+
+    ```bash
+    cd hranalyticsjobchangedatascientists/hranalyticsjobchangedatascientists
+    ```
+* Run de next code on Terminal:
+    ```bash
+    docker build -t Hr-image .
+    ```
+* Next you can see the image created in Docker Desk
+
+    ![Logs](imgs/imageDocker.png)
+
+* After run the this code on Terminal:
+    ```bash
+    docker build -t hr- image
+    ```
+
+    ![Logs](imgs/terminal.png)
+ 
+ * Now, we cat show in Docker the container:
+
+    ![Logs](imgs/container.png)
+
+* You can check the endpoints as follows:
+  * Access ```http://localhost:8000/```
+  
